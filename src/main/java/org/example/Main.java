@@ -1,17 +1,44 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int[] array = new int[10];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(100) + 1;
         }
+
+        System.out.println("Початковий масив:");
+        System.out.println(Arrays.toString(array));
+
+        ArrayUtils.mergeSort(array);
+
+        System.out.println("\nВідсортований масив:");
+        System.out.println(Arrays.toString(array));
+
+        System.out.print("\nВведіть число для пошуку: ");
+        int target = scanner.nextInt();
+
+        int result = ArrayUtils.binarySearch(array, target);
+
+        if (result != -1) {
+            System.out.println("Число знайдено!");
+            System.out.println("Індекс елемента: " + result);
+        } else {
+            System.out.println("Число не знайдено!");
+        }
+
+        scanner.close();
     }
 }
+
